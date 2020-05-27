@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:cjxd9-to-10-upgrade/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: andrew.bayer+bot@gmail.com
+  token: vault:cjxd9-to-10-upgrade/pipelineUser:token
+  username: abayer-bot
+prow:
+  hmacToken: vault:cjxd9-to-10-upgrade/prow:hmacToken

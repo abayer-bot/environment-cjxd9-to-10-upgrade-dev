@@ -1,39 +1,83 @@
 autoUpdate:
   enabled: false
   schedule: ""
+bootConfigURL: https://github.com/cloudbees/cloudbees-jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: true
-  project: ""
   azure: {}
+  clusterName: cjxd9-to-10-upgrade
+  devEnvApprovers:
+  - abayer
+  environmentGitOwner: abayer-bot
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: abayer-jx-experiment
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: europe-west1-c
 environments:
-  - key: dev
-  - key: staging
-  - key: production
+- ingress:
+    domain: 35.189.218.209.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+  repository: environment-cjxd9-to-10-upgrade-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-cjxd9-to-10-upgrade-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-cjxd9-to-10-upgrade-production
+gitops: true
 ingress:
-  domain: ""
+  domain: 35.189.218.209.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
 kaniko: true
+repository: nexus
 secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
     enabled: true
-    url: ""
+    url: gs://cjxd9-to-10-upgrade-logs-d5b7a69b-7c9c-4f19-84de-0b17fb
   reports:
     enabled: true
-    url: ""
+    url: gs://cjxd9-to-10-upgrade-reports-7e885679-3d09-4dfe-9ff5-6c4
   repository:
     enabled: true
-    url: ""
+    url: gs://cjxd9-to-10-upgrade-repository-6d79e086-9334-42c2-9254
+vault: {}
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: 2.1.13+cjxd.9
+  ref: v0.0.31
   url: https://github.com/cloudbees/cloudbees-jenkins-x-versions.git
 webhook: prow
